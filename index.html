@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>sKR Suggestion Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .suggestion-container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .suggestion { padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Current Date and Time (UTC): 2026-04-03 08:56:58</p>
+    <div class="suggestion-container">
+        <h1>sKR Suggestion Tool</h1>
+        <div id="suggestions"></div>
+        <input type="text" id="userInput" placeholder="Type your suggestion here" />
+        <button onclick="addSuggestion()">Add Suggestion</button>
+    </div>
+
+    <script>
+        let suggestions = [];
+
+        function addSuggestion() {
+            const input = document.getElementById('userInput');
+            if (input.value.trim() !== '') {
+                suggestions.push(input.value);
+                input.value = '';
+                renderSuggestions();
+            }
+        }
+
+        function renderSuggestions() {
+            const suggestionsDiv = document.getElementById('suggestions');
+            suggestionsDiv.innerHTML = '';
+            suggestions.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'suggestion';
+                div.textContent = s;
+                suggestionsDiv.appendChild(div);
+            });
+        }
+    </script>
 </body>
 </html>
